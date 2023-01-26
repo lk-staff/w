@@ -9,7 +9,28 @@ const routes: Array<RouteRecordRaw> = [
     meta: {
       layout: LayoutsEnum.default,
     },
-    component: () => import('@/pages/IndexPage.vue'),
+    children: [
+      {
+        path: '',
+        component: () => import('@/pages/IndexPage.vue'),
+      },
+      {
+        path: 'auth',
+        meta: {
+          layout: LayoutsEnum.empty,
+        },
+        children: [
+          {
+            path: 'signup',
+            component: () => import('@/pages/auth/SignUpPage.vue'),
+          },
+          {
+            path: 'signin',
+            component: () => import('@/pages/auth/SignInPage.vue'),
+          },
+        ],
+      },
+    ],
   },
 ];
 
